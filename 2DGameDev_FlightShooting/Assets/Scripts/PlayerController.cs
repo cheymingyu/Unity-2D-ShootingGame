@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private StageData stageData;
     private Movement2D movement2D;
 
     private void Awake()
@@ -16,5 +18,12 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
 
         movement2D.MoveTo(new Vector3(x, y, 0));
+    }
+
+    private void LateUpdate()
+    {
+        // 플레이어 캐릭터가 화면 범위 바깥으로 나가지 못하도록 함
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, stageData.LimitMin.x, stageData.LimitMax.x),
+                                         Mathf.Clamp(transform.position.y, stageData.LimitMin.y, stageData.LimitMax.y));
     }
 }
