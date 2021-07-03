@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 124086335}
   - component: {fileID: 124086338}
   - component: {fileID: 124086337}
+  - component: {fileID: 124086339}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -234,6 +235,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageData: {fileID: 11400000, guid: a048b9370dfb0ce41af0aff37b558bb0, type: 2}
+  KeyCodeAttack: 32
+--- !u!114 &124086339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124086334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e49d1eaf71e8043a39a7c695d7cda2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 8378698998402496037, guid: a06f6282936b04f4c8647272957c3e71, type: 3}
+  attackRate: 0.1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
