@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2842878222616265573}
   - component: {fileID: 2842878222616265594}
   - component: {fileID: 8054750046880499062}
+  - component: {fileID: -95741979658775488}
   m_Layer: 0
   m_Name: Meteorite
   m_TagString: Untagged
@@ -114,3 +115,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.12
+--- !u!114 &-95741979658775488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842878222616265595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316c80eb30138554d8007f6266e2a5aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
