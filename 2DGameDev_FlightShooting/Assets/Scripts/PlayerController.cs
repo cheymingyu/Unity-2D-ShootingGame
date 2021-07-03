@@ -4,11 +4,15 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private StageData stageData;
+    [SerializeField]
+    private KeyCode KeyCodeAttack = KeyCode.Space;
     private Movement2D movement2D;
+    private Weapon weapon;
 
     private void Awake()
     {
-        movement2D = GetComponent<Movement2D>();
+        movement2D  = GetComponent<Movement2D>();
+        weapon      = GetComponent<Weapon>();
     }
 
     private void Update()
@@ -18,6 +22,16 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
 
         movement2D.MoveTo(new Vector3(x, y, 0));
+        
+        // 공격 키를 Down/Up으로 공격 시작/종료
+        if (Input.GetKeyDown(KeyCodeAttack))
+        {
+            weapon.StartFiring();
+        }
+        else if (Input.GetKeyUp(KeyCodeAttack))
+        {
+            weapon.StopFiring();
+        }
     }
 
     private void LateUpdate()
