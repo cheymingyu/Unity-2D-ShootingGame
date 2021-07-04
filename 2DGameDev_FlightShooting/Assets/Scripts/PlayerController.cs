@@ -9,6 +9,14 @@ public class PlayerController : MonoBehaviour
     private Movement2D movement2D;
     private Weapon weapon;
 
+    private int score;
+    public int Score
+    {
+        // score 값이 음수가 되지 않도록
+        set => score = Mathf.Max(0, value);
+        get => score;
+    }
+
     private void Awake()
     {
         movement2D  = GetComponent<Movement2D>();
