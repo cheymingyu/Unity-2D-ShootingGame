@@ -8,6 +8,9 @@ public class PlayerHP : MonoBehaviour
     private float currentHP;        // 현재 체력
     private SpriteRenderer spriteRenderer;
 
+    public float MaxHP => maxHP;            // maxHP 변수에 접근할 수 있는 프로퍼티 (Get만 가능)
+    public float CurrentHP => currentHP;     // currentHP 변수에 접근할 수 있는 프로퍼티 (Get만 가능)
+
     private void Awake()
     {
         currentHP = maxHP;
