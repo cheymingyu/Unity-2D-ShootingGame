@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   scorePoint: 100
+  explosionPrefab: {fileID: 4593914027397594887, guid: 8f4aa1d76e27d774187d663b7dfecfdf, type: 3}
 --- !u!114 &8235385983770789786
 MonoBehaviour:
   m_ObjectHideFlags: 0
