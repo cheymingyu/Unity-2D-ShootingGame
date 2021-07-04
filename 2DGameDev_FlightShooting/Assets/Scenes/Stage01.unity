@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb594107b58e6f42bf9655529e2e56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: GameOver
   stageData: {fileID: 11400000, guid: a048b9370dfb0ce41af0aff37b558bb0, type: 2}
   KeyCodeAttack: 32
 --- !u!114 &124086339
