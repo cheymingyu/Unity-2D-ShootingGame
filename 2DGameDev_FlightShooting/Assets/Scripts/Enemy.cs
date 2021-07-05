@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
 
     private void SpawnItem()
     {
-        // ÆÄ¿ö¾÷(10%), ÆøÅº+1(5%)
+        // ÆÄ¿ö¾÷(10%), ÆøÅº+1(5%), Ã¼·ÂÈ¸º¹(15%)
         int spawnItem = Random.Range(0, 100);
         if (spawnItem < 10)
         {
@@ -52,6 +52,10 @@ public class Enemy : MonoBehaviour
         else if (spawnItem < 15)
         {
             Instantiate(itemPrefabs[1], transform.position, Quaternion.identity);
+        }
+        else if (spawnItem < 30)
+        {
+            Instantiate(itemPrefabs[2], transform.position, Quaternion.identity);
         }
     }
 }
