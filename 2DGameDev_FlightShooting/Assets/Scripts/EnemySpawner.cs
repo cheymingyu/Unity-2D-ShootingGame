@@ -49,5 +49,7 @@ public class EnemySpawner : MonoBehaviour
 
         // Slider UI가 쫓아다닐 대상을 본인으로 설정
         sliderClone.GetComponent<SliderPositionAutoSetter>().SetUp(enemy.transform);
+        // Slider UI에 자신의 체력 정보를 표시하도록 설정
+        sliderClone.GetComponent<EnemyHPViewer>().SetUp(enemy.GetComponent<EnemyHP>());
     }
 }
