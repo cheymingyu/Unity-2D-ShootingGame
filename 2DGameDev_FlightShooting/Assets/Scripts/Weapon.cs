@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour
     private GameObject  boomPrefab;                 // 气藕 橇府普
     private int         boomCount = 3;              // 积己 啊瓷茄 气藕
 
+    public int BoomCount => boomCount;
+
 
     private void Awake()
     {
