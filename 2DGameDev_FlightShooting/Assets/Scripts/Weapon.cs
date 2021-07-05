@@ -10,6 +10,10 @@ public class Weapon : MonoBehaviour
     private int         attackLevel = 1;            // °ø°Ý ·¹º§
     private AudioSource audioSource;                // »ç¿îµå Àç»ý ÄÄÆ÷³ÍÆ®
 
+    [SerializeField]
+    private GameObject  boomPrefab;                 // ÆøÅº ÇÁ¸®ÆÕ
+    private int         boomCount = 3;              // »ý¼º °¡´ÉÇÑ ÆøÅº
+
 
     private void Awake()
     {
@@ -23,6 +27,15 @@ public class Weapon : MonoBehaviour
     public void StopFiring()
     {
         StopCoroutine("TryAttack");
+    }
+
+    public void StartBoom()
+    {
+        if (boomCount > 0)
+        {
+            boomCount--;
+            Instantiate(boomPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     private IEnumerator TryAttack()
