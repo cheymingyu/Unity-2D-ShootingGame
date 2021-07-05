@@ -46,5 +46,8 @@ public class EnemySpawner : MonoBehaviour
         sliderClone.transform.SetParent(canvasTransform);
         // 계층 설정으로 바뀐 크기를 다시 (1, 1, 1)로 설정
         sliderClone.transform.localScale = Vector3.one;
+
+        // Slider UI가 쫓아다닐 대상을 본인으로 설정
+        sliderClone.GetComponent<SliderPositionAutoSetter>().SetUp(enemy.transform);
     }
 }
