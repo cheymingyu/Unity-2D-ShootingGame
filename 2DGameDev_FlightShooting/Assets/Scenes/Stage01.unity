@@ -242,6 +242,7 @@ MonoBehaviour:
   nextSceneName: GameOver
   stageData: {fileID: 11400000, guid: a048b9370dfb0ce41af0aff37b558bb0, type: 2}
   KeyCodeAttack: 32
+  keyCodeBoom: 122
 --- !u!114 &124086339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 8378698998402496037, guid: a06f6282936b04f4c8647272957c3e71, type: 3}
   attackRate: 0.1
+  boomPrefab: {fileID: 3267971662914089013, guid: f595cd2033ffd154d991e19f5c32e690, type: 3}
 --- !u!50 &124086340
 Rigidbody2D:
   serializedVersion: 4
