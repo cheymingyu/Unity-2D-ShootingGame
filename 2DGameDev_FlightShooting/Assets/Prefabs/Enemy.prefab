@@ -136,6 +136,7 @@ MonoBehaviour:
   itemPrefabs:
   - {fileID: 6845503355162520687, guid: 01769add1bba4774ba590b015758f77f, type: 3}
   - {fileID: 3886075497810173447, guid: a42ce0652ee868949b5831d17137fe02, type: 3}
+  - {fileID: 7796394267046814142, guid: c2033558945fc3f48a7bc56942ab0df7, type: 3}
 --- !u!114 &8235385983770789786
 MonoBehaviour:
   m_ObjectHideFlags: 0
