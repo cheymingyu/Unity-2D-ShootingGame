@@ -7,12 +7,20 @@ public class Weapon : MonoBehaviour
     private GameObject  projectilePrefab;           // 공격할 때 생성되는 발사체 프리팹
     [SerializeField]
     private float       attackRate = 0.1f;          // 공격 속도
+    [SerializeField]
+    private int         maxAttackLevel = 3;         // 공격 최대 레벨
     private int         attackLevel = 1;            // 공격 레벨
     private AudioSource audioSource;                // 사운드 재생 컴포넌트
 
     [SerializeField]
     private GameObject  boomPrefab;                 // 폭탄 프리팹
     private int         boomCount = 3;              // 생성 가능한 폭탄
+
+    public int AttackLevel
+    {
+        set => attackLevel = Mathf.Clamp(value, 1, maxAttackLevel);
+        get => attackLevel;
+    }
 
     public int BoomCount => boomCount;
 
