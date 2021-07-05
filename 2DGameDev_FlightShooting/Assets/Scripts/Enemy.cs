@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour
     private int scorePoint = 100;               // 적 처치시 획득 점수
     [SerializeField]
     private GameObject explosionPrefab;         // 폭발 효과
+    [SerializeField]
+    private GameObject[] itemPrefabs;           // 적을 죽였을 때 획득 가능한 아이템
+
     private PlayerController playerController;  // 플레이어의 점수(Score) 정보에 접근하기 위해
 
     private void Awake()
@@ -32,7 +35,19 @@ public class Enemy : MonoBehaviour
         playerController.Score += scorePoint;
         // 폭발 이펙트 생성
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        // 일정 확률로 아이템 생성
+        SpawnItem();
         // 적 오브젝트 삭제
         Destroy(gameObject);
+    }
+
+    private void SpawnItem()
+    {
+        // 파워업(10%)
+        int spawnItem = Random.Range(0, 100);
+        if (spawnItem < 10)
+        {
+            Instantiate(itemPrefabs[0], transform.position, Quaternion.identity);
+        }
     }
 }
