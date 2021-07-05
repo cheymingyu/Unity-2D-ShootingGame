@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum ItemType { PowerUp = 0, }
+public enum ItemType { PowerUp = 0, Boom, }
 
 public class Item : MonoBehaviour
 {
@@ -35,6 +35,9 @@ public class Item : MonoBehaviour
         {
             case ItemType.PowerUp:
                 player.GetComponent<Weapon>().AttackLevel++;
+                break;
+            case ItemType.Boom:
+                player.GetComponent<Weapon>().BoomCount++;
                 break;
         }
     }
