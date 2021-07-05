@@ -22,7 +22,11 @@ public class Weapon : MonoBehaviour
         get => attackLevel;
     }
 
-    public int BoomCount => boomCount;
+    public int BoomCount
+    {
+        set => boomCount = Mathf.Max(0, value);
+        get => boomCount;
+    }
 
 
     private void Awake()
