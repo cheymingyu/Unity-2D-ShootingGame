@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public enum AttackType { CircleFire = 0, }
+public enum AttackType { CircleFire = 0, SingleFireToCenterPosition }
 
 public class BossWeapon : MonoBehaviour
 {
@@ -45,6 +45,25 @@ public class BossWeapon : MonoBehaviour
 
             // 발사체가 생성되는 시작 각도 설정을 위한 변수
             weightAngle += 1;
+
+            // attackRate 시간만큼 대기
+            yield return new WaitForSeconds(attackRate);
+        }
+    }
+
+    private IEnumerator SingleFireToCenterPosition()
+    {
+        Vector3 targetPosition = Vector3.zero;      // 목표 위치 (중앙)
+        float attackRate = 0.1f;
+
+        while (true)
+        {
+            // 발사체 생성
+            GameObject clone = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            // 발사체 이동 방향
+            Vector3 direction = (targetPosition - clone.transform.position).normalized;
+            // 발사체 이동 방향 설정
+            clone.GetComponent<Movement2D>().MoveTo(direction);
 
             // attackRate 시간만큼 대기
             yield return new WaitForSeconds(attackRate);
