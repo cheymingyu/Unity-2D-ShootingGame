@@ -1,18 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
-public enum BossState { MoveToAppearPoint = 0, }
+public enum BossState { MoveToAppearPoint = 0, Phase01, }
 
 public class Boss : MonoBehaviour
 {
     [SerializeField]
-    private float bossAppearPoint = 2.5f;
-    private BossState bossState = BossState.MoveToAppearPoint;
-    private Movement2D movement2D;
+    private float       bossAppearPoint = 2.5f;
+    private BossState   bossState = BossState.MoveToAppearPoint;
+    private Movement2D  movement2D;
+    private BossWeapon  bossWeapon;
 
     private void Awake()
     {
         movement2D = GetComponent<Movement2D>();
+        bossWeapon = GetComponent<BossWeapon>();
     }
 
     public void ChangeState(BossState newState)
@@ -43,8 +45,20 @@ public class Boss : MonoBehaviour
             {
                 // 이동방향을 (0, 0, 0)으로 설정해 멈추도록 한다.
                 movement2D.MoveTo(Vector3.zero);
+                // Phase01 상태로 변경
+                ChangeState(BossState.Phase01);
             }
 
+            yield return null;
+        }
+    }
+
+    private IEnumerator Phase01()
+    {
+        // 원 형태의 방사 공격 시작
+        bossWeapon.StartFiring(AttackType.CircleFire);
+
+        while (true) {
             yield return null;
         }
     }
