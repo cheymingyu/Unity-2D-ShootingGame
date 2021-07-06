@@ -1,20 +1,24 @@
 using System.Collections;
 using UnityEngine;
 
-public enum BossState { MoveToAppearPoint = 0, Phase01, }
+public enum BossState { MoveToAppearPoint = 0, Phase01, Phase02 }
 
 public class Boss : MonoBehaviour
 {
+    [SerializeField]
+    private StageData   stageData;
     [SerializeField]
     private float       bossAppearPoint = 2.5f;
     private BossState   bossState = BossState.MoveToAppearPoint;
     private Movement2D  movement2D;
     private BossWeapon  bossWeapon;
+    private BossHP      bossHP;
 
     private void Awake()
     {
-        movement2D = GetComponent<Movement2D>();
-        bossWeapon = GetComponent<BossWeapon>();
+        movement2D  = GetComponent<Movement2D>();
+        bossWeapon  = GetComponent<BossWeapon>();
+        bossHP = GetComponent<BossHP>();
     }
 
     public void ChangeState(BossState newState)
@@ -58,7 +62,40 @@ public class Boss : MonoBehaviour
         // 원 형태의 방사 공격 시작
         bossWeapon.StartFiring(AttackType.CircleFire);
 
-        while (true) {
+        while (true) 
+        {
+            // 보스의 현재 체력이 70% 이하가 되면
+            if (bossHP.CurrentHP <= bossHP.MaxHP * 0.7f)
+            {
+                // 원 방사 형태의 공격 중지
+                bossWeapon.StopFiring(AttackType.CircleFire);
+                // Phase02로 변경
+                ChangeState(BossState.Phase02);
+            }
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator Phase02()
+    {
+        // 플레이어 위치를 기준으로 단일 발사체 공격 시작
+        bossWeapon.StartFiring(AttackType.SingleFireToCenterPosition);
+
+        // 처음 이동 방향을 오른쪽으로 설정
+        Vector3 direction = Vector3.right;
+        movement2D.MoveTo(direction);
+
+        while (true)
+        {
+            // 좌-우 이동 중 양쪽 끝에 도달하게 되면 방향을 반대로 설정
+            if (transform.position.x <= stageData.LimitMin.x ||
+                transform.position.x >= stageData.LimitMax.x)
+            {
+                direction *= -1;
+                movement2D.MoveTo(direction);
+            }
+
             yield return null;
         }
     }
