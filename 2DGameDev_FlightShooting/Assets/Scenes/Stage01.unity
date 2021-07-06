@@ -1265,6 +1265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageData: {fileID: 11400000, guid: a048b9370dfb0ce41af0aff37b558bb0, type: 2}
   explosionPrefab: {fileID: 6244968184182048868, guid: 8d018f1dc1d9afe4a841db07ce461e4b, type: 3}
+  playerController: {fileID: 124086338}
+  nextSceneName: GameClear
   bossAppearPoint: 2.5
 --- !u!114 &971956125
 MonoBehaviour:
