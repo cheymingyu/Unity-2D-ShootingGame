@@ -18,7 +18,7 @@ public class BossExplosion : MonoBehaviour
         playerController.Score += 10000;
         // 플레이어 획득 점수를 "Score"키에 저장
         PlayerPrefs.SetInt("Score", playerController.Score);
-        // scnenName으로 씬 변경
+        // sceneName으로 씬 변경
         SceneManager.LoadScene(sceneName);
     }
 }
