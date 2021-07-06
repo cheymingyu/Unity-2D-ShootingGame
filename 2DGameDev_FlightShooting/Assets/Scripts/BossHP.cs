@@ -7,6 +7,7 @@ public class BossHP : MonoBehaviour
     private float maxHP = 1000;     // 최대 체력
     private float currentHP;        // 현재 체력
     private SpriteRenderer spriteRenderer;
+    private Boss boss;
 
     public float MaxHP => maxHP;
     public float CurrentHP => currentHP;
@@ -15,6 +16,7 @@ public class BossHP : MonoBehaviour
     {
         currentHP = maxHP;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boss = GetComponent<Boss>();
     }
 
     public void TakeDamage(float damage)
@@ -29,6 +31,7 @@ public class BossHP : MonoBehaviour
         if (currentHP <= 0)
         {
             // 체력이 0이면 OnDie() 함수를 호출해서 죽었을 때 처리를 한다
+            boss.OnDie();
         }
     }
 
