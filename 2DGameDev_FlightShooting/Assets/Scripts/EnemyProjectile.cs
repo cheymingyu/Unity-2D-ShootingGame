@@ -4,6 +4,8 @@ public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField]
     private int damage = 1;
+    [SerializeField]
+    private GameObject explosionPrefab;     // 폭발 효과
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,5 +17,13 @@ public class EnemyProjectile : MonoBehaviour
             // 내 오브젝트 삭제 (발사체)
             Destroy(gameObject);
         }
+    }
+
+    public void OnDie()
+    {
+        // 폭발 효과 생성
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        // 적/보스 발사체 삭제
+        Destroy(gameObject);
     }
 }
