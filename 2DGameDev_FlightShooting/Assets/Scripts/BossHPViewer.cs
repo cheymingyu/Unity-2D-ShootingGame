@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossHPVIewer : MonoBehaviour
+public class BossHPViewer : MonoBehaviour
 {
     [SerializeField]
     private BossHP bossHP;
