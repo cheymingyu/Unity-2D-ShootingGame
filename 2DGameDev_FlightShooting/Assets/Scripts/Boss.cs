@@ -8,6 +8,8 @@ public class Boss : MonoBehaviour
     [SerializeField]
     private StageData   stageData;
     [SerializeField]
+    private GameObject  explosionPrefab;
+    [SerializeField]
     private float       bossAppearPoint = 2.5f;
     private BossState   bossState = BossState.MoveToAppearPoint;
     private Movement2D  movement2D;
@@ -132,5 +134,13 @@ public class Boss : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    public void OnDie()
+    {
+        // 보스 파괴 파티클 생성
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        // 보스 오브젝트 삭제
+        Destroy(gameObject);
     }
 }
