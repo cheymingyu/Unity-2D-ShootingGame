@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public enum BossState { MoveToAppearPoint = 0, Phase01, Phase02 }
+public enum BossState { MoveToAppearPoint = 0, Phase01, Phase02, Phase03 }
 
 public class Boss : MonoBehaviour
 {
@@ -79,6 +79,40 @@ public class Boss : MonoBehaviour
 
     private IEnumerator Phase02()
     {
+        // 플레이어 위치를 기준으로 단일 발사체 공격 시작
+        bossWeapon.StartFiring(AttackType.SingleFireToCenterPosition);
+
+        // 처음 이동 방향을 오른쪽으로 설정
+        Vector3 direction = Vector3.right;
+        movement2D.MoveTo(direction);
+
+        while (true)
+        {
+            // 좌-우 이동 중 양쪽 끝에 도달하게 되면 방향을 반대로 설정
+            if (transform.position.x <= stageData.LimitMin.x ||
+                transform.position.x >= stageData.LimitMax.x)
+            {
+                direction *= -1;
+                movement2D.MoveTo(direction);
+            }
+
+            // 보스의 현재 체력이 30% 이하가 되면
+            if (bossHP.CurrentHP <= bossHP.MaxHP * 0.3f)
+            {
+                // 플레이어 위치를 기준으로 단일 발사체 공격 중지
+                bossWeapon.StopFiring(AttackType.SingleFireToCenterPosition);
+                // Phase02로 변경
+                ChangeState(BossState.Phase03);
+            }
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator Phase03()
+    {
+        // 원 형태의 방사 공격 시작
+        bossWeapon.StartFiring(AttackType.CircleFire);
         // 플레이어 위치를 기준으로 단일 발사체 공격 시작
         bossWeapon.StartFiring(AttackType.SingleFireToCenterPosition);
 
