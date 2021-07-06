@@ -14,12 +14,17 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private BGMController   bgmController;          // 배경음악 설정 (보스 등장 시 변경)
     [SerializeField]
+    private GameObject      textBossWarning;        // 보스 등장 텍스트 오브젝트
+    [SerializeField]
     private float           spawnTime;              // 생성 주기
     [SerializeField]
     private float           maxEnemyCount = 100;    // 현재 스테이지의 최대 적 생성숫자
 
     private void Awake()
     {
+        //보스 등장 텍스트 비활성화
+        textBossWarning.SetActive(false);
+
         StartCoroutine("SpawnEnemy");
     }
 
@@ -72,6 +77,12 @@ public class EnemySpawner : MonoBehaviour
     {
         // 보스 등장 BGM 설정
         bgmController.ChangeBGM(BGMType.Boss); // bgmController.ChangeBGM(1); 보다 가독성이 좋다.
-        yield return null;
+        // 보스 등장 텍스트 활성화
+        textBossWarning.SetActive(true);
+        // 1초 대기
+        yield return new WaitForSeconds(1.0f);
+
+        // 보스 등장 텍스트 비활성화
+        textBossWarning.SetActive(false);
     }
 }
