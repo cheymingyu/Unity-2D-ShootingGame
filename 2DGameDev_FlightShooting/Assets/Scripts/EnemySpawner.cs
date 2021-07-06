@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject      textBossWarning;        // 보스 등장 텍스트 오브젝트
     [SerializeField]
+    private GameObject      boss;                   // 보스 오브젝트
+    [SerializeField]
     private float           spawnTime;              // 생성 주기
     [SerializeField]
     private float           maxEnemyCount = 100;    // 현재 스테이지의 최대 적 생성숫자
@@ -24,6 +26,8 @@ public class EnemySpawner : MonoBehaviour
     {
         //보스 등장 텍스트 비활성화
         textBossWarning.SetActive(false);
+        // 보스 오브젝트 비활성화
+        boss.SetActive(false);
 
         StartCoroutine("SpawnEnemy");
     }
@@ -84,5 +88,9 @@ public class EnemySpawner : MonoBehaviour
 
         // 보스 등장 텍스트 비활성화
         textBossWarning.SetActive(false);
+        // 보스 오브젝트 활성화
+        boss.SetActive(true);
+        // 보스의 첫 번째 상태인 지정된 위치로 이동 실행
+        boss.GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
     }
 }
