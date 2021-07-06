@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject      textBossWarning;        // 보스 등장 텍스트 오브젝트
     [SerializeField]
+    private GameObject      panelBossHP;            // 보스 체력 패널 오브젝트
+    [SerializeField]
     private GameObject      boss;                   // 보스 오브젝트
     [SerializeField]
     private float           spawnTime;              // 생성 주기
@@ -26,6 +28,8 @@ public class EnemySpawner : MonoBehaviour
     {
         //보스 등장 텍스트 비활성화
         textBossWarning.SetActive(false);
+        // 보스 체력 패널 비활성화
+        panelBossHP.SetActive(false);
         // 보스 오브젝트 비활성화
         boss.SetActive(false);
 
@@ -88,6 +92,8 @@ public class EnemySpawner : MonoBehaviour
 
         // 보스 등장 텍스트 비활성화
         textBossWarning.SetActive(false);
+        // 보스 체력 패널 활성화
+        panelBossHP.SetActive(true);
         // 보스 오브젝트 활성화
         boss.SetActive(true);
         // 보스의 첫 번째 상태인 지정된 위치로 이동 실행
