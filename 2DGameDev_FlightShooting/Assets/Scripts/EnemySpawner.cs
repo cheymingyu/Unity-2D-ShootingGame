@@ -4,15 +4,17 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    private StageData stageData;            // 적 생성을 위한 스테이지 크기 정보
+    private StageData   stageData;              // 적 생성을 위한 스테이지 크기 정보
     [SerializeField]
-    private GameObject enemyPrefab;         // 복제해서 생성할 적 캐릭터 프리팹
+    private GameObject  enemyPrefab;            // 복제해서 생성할 적 캐릭터 프리팹
     [SerializeField]
-    private GameObject enemyHPSliderPrefab; // 적 체력을 나타내는 Slider UI 프리팹
+    private GameObject  enemyHPSliderPrefab;    // 적 체력을 나타내는 Slider UI 프리팹
     [SerializeField]
-    private Transform canvasTransform;      // UI를 표현하는 Canvas 오브젝트의 Transform
+    private Transform   canvasTransform;        // UI를 표현하는 Canvas 오브젝트의 Transform
     [SerializeField]
-    private float spawnTime;                // 생성 주기
+    private float       spawnTime;              // 생성 주기
+    [SerializeField]
+    private float       maxEnemyCount = 100;    // 현재 스테이지의 최대 적 생성숫자
 
     private void Awake()
     {
@@ -21,6 +23,8 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
+        int currentEnemyCount = 0;      // 적 생성 숫자 카운트용 변수
+
         while (true)
         {
             // x 위치는 스테이지의 크기 범위 내에서 임의의 값을 선택
@@ -31,6 +35,15 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemyClone = Instantiate(enemyPrefab, position, Quaternion.identity);
             // 적 체력을 나타내는 Slider UI 생성 및 설정
             SpawnEnemyHPSlider(enemyClone);
+
+            // 적 생성 숫자 증가
+            currentEnemyCount++;
+            // 적을 최대 숫자까지 생성하면 적 생성 코루틴 중지, 보스 생성 코루틴 실행
+            if (currentEnemyCount == maxEnemyCount)
+            {
+                StartCoroutine("SpawnBoss");
+                break;
+            }
 
             // spawnTime만큼 대기
             yield return new WaitForSeconds(spawnTime);
@@ -51,5 +64,10 @@ public class EnemySpawner : MonoBehaviour
         sliderClone.GetComponent<SliderPositionAutoSetter>().SetUp(enemy.transform);
         // Slider UI에 자신의 체력 정보를 표시하도록 설정
         sliderClone.GetComponent<EnemyHPViewer>().SetUp(enemy.GetComponent<EnemyHP>());
+    }
+
+    private IEnumerator SpawnBoss()
+    {
+        yield return null;
     }
 }
