@@ -1264,6 +1264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageData: {fileID: 11400000, guid: a048b9370dfb0ce41af0aff37b558bb0, type: 2}
+  explosionPrefab: {fileID: 6244968184182048868, guid: 8d018f1dc1d9afe4a841db07ce461e4b, type: 3}
   bossAppearPoint: 2.5
 --- !u!114 &971956125
 MonoBehaviour:
@@ -1290,7 +1291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9fda57b30b7b744b7db9a64ae008cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1000
+  maxHP: 300
 --- !u!1 &1009561961
 GameObject:
   m_ObjectHideFlags: 0
