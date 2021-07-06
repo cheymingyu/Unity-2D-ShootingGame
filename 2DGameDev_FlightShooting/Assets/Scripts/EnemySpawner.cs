@@ -4,17 +4,19 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    private StageData   stageData;              // 적 생성을 위한 스테이지 크기 정보
+    private StageData       stageData;              // 적 생성을 위한 스테이지 크기 정보
     [SerializeField]
-    private GameObject  enemyPrefab;            // 복제해서 생성할 적 캐릭터 프리팹
+    private GameObject      enemyPrefab;            // 복제해서 생성할 적 캐릭터 프리팹
     [SerializeField]
-    private GameObject  enemyHPSliderPrefab;    // 적 체력을 나타내는 Slider UI 프리팹
+    private GameObject      enemyHPSliderPrefab;    // 적 체력을 나타내는 Slider UI 프리팹
     [SerializeField]
-    private Transform   canvasTransform;        // UI를 표현하는 Canvas 오브젝트의 Transform
+    private Transform       canvasTransform;        // UI를 표현하는 Canvas 오브젝트의 Transform
     [SerializeField]
-    private float       spawnTime;              // 생성 주기
+    private BGMController   bgmController;          // 배경음악 설정 (보스 등장 시 변경)
     [SerializeField]
-    private float       maxEnemyCount = 100;    // 현재 스테이지의 최대 적 생성숫자
+    private float           spawnTime;              // 생성 주기
+    [SerializeField]
+    private float           maxEnemyCount = 100;    // 현재 스테이지의 최대 적 생성숫자
 
     private void Awake()
     {
@@ -68,6 +70,8 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnBoss()
     {
+        // 보스 등장 BGM 설정
+        bgmController.ChangeBGM(BGMType.Boss); // bgmController.ChangeBGM(1); 보다 가독성이 좋다.
         yield return null;
     }
 }
