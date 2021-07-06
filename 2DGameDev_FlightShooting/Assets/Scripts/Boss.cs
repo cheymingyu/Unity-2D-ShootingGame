@@ -6,15 +6,19 @@ public enum BossState { MoveToAppearPoint = 0, Phase01, Phase02, Phase03 }
 public class Boss : MonoBehaviour
 {
     [SerializeField]
-    private StageData   stageData;
+    private StageData           stageData;
     [SerializeField]
-    private GameObject  explosionPrefab;
+    private GameObject          explosionPrefab;
     [SerializeField]
-    private float       bossAppearPoint = 2.5f;
-    private BossState   bossState = BossState.MoveToAppearPoint;
-    private Movement2D  movement2D;
-    private BossWeapon  bossWeapon;
-    private BossHP      bossHP;
+    private PlayerController    playerController;
+    [SerializeField]
+    private string              nextSceneName;       // 다음 씬 이름 (다음 스테이지 or 게임 클리어)
+    [SerializeField]
+    private float               bossAppearPoint = 2.5f;
+    private BossState           bossState = BossState.MoveToAppearPoint;
+    private Movement2D          movement2D;
+    private BossWeapon          bossWeapon;
+    private BossHP              bossHP;
 
     private void Awake()
     {
@@ -139,7 +143,9 @@ public class Boss : MonoBehaviour
     public void OnDie()
     {
         // 보스 파괴 파티클 생성
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        GameObject clone = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        // 파티클 재생 완료 후 씬 전환을 위한 설정
+        clone.GetComponent<BossExplosion>().SetUp(playerController, nextSceneName);
         // 보스 오브젝트 삭제
         Destroy(gameObject);
     }
