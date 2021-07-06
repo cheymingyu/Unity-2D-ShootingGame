@@ -44,9 +44,10 @@ public class BossWeapon : MonoBehaviour
             }
 
             // 발사체가 생성되는 시작 각도 설정을 위한 변수
-
+            weightAngle += 1;
 
             // attackRate 시간만큼 대기
+            yield return new WaitForSeconds(attackRate);
         }
     }
 }
